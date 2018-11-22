@@ -1,5 +1,6 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = {
     entry: {
@@ -16,7 +17,46 @@ const config = {
 
 
 
-
+            // {
+            //   test: /\.vue$/,
+            //   loader: 'vue-loader',
+            //   use: [
+            //     process.env.NODE_ENV !== 'production'
+            //       ? 'vue-style-loader'
+            //       : MiniCssExtractPlugin.loader,
+            //       'vue-style-loader',
+            //       'css-loader',
+            //       'sass-loader?indentedSyntax'
+            //   ],
+            //   options: {
+            //     loaders: {
+            //       // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+            //       // the "scss" and "sass" values for the lang attribute to the right configs here.
+            //       // other preprocessors should work out of the box, no loader config like this necessary.
+            //       'scss': [
+            //         'vue-style-loader',
+            //         'css-loader',
+            //         'sass-loader'
+            //       ],
+            //       'sass': [
+            //         'vue-style-loader',
+            //         'css-loader',
+            //         'sass-loader?indentedSyntax'
+            //       ]
+            //     }
+            //     // other vue-loader options go here
+            //   }
+            // },
+            {
+              test: /\.vue$/,
+              loader: 'vue-loader',
+              // use: [
+              //   'vue-style-loader',
+              //   'css-loader',
+              //   'sass-loader'
+              // ],
+            },
+                      
             {
                 test: /\.css$/,
                 use: [
@@ -41,28 +81,6 @@ const config = {
                 ],
               },
               {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                  loaders: {
-                    // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-                    // the "scss" and "sass" values for the lang attribute to the right configs here.
-                    // other preprocessors should work out of the box, no loader config like this necessary.
-                    'scss': [
-                      'vue-style-loader',
-                      'css-loader',
-                      'sass-loader'
-                    ],
-                    'sass': [
-                      'vue-style-loader',
-                      'css-loader',
-                      'sass-loader?indentedSyntax'
-                    ]
-                  }
-                  // other vue-loader options go here
-                }
-              },
-              {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
@@ -75,7 +93,10 @@ const config = {
         filename: "assets/js/[name].js"
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin({
+          filename: 'assets/styles.css'
+        })
     ],
     mode: 'development',
 

@@ -3,7 +3,10 @@
     <app-header></app-header>
     <section class="section main-section">
         <div class="container content">
-            <app-category></app-category>
+            
+            <br>       <!-- <app-category></app-category> -->
+            <hr>
+            <router-view></router-view>
         </div>
     </section>
     <app-footer></app-footer>
@@ -11,24 +14,28 @@
 </template>
 
 <script>
-    import AppHeader from './AppHeader.vue';
-    import AppFooter from './AppFooter.vue';
-    import AppCategory from './Category.vue';
-    export default {
-        components: {
-            'app-header': AppHeader,
-            'app-footer': AppFooter,
-            'app-category': AppCategory
-        },
-        
-    };
+import AppHeader from './AppHeader.vue';
+import AppFooter from './AppFooter.vue';
+export default {
+	components: {
+		'app-header': AppHeader,
+		'app-footer': AppFooter,
+	},
+};
 </script>
 
 <style lang="scss" >
 @import '~bulma';
 
 .columns {
-    flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.center-text {
+    text-align: center;
+}
+.button {
+    margin-top: 5px;
 }
 </style>
 
